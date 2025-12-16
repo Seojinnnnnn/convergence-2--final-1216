@@ -1,0 +1,305 @@
+:root {
+    --purple-top: #6a11cb;
+    --white-bottom: #ffffff;
+    --text-dark: #333333;
+    --text-light: #ffffff;
+    --gold-accent: #88ff96;
+    --glass-bg: rgba(255, 255, 255, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'BBH Bogle';
+    src: url('https://raw.githubusercontent.com/Studio-DRAMA/BBHSans/main/fonts/BBHSansBogle-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'BBH Bogle', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+    background: linear-gradient(to bottom, var(--purple-top), var(--white-bottom));
+    color: var(--text-dark);
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Page Transitions */
+.page-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.page-section.active {
+    opacity: 1;
+    pointer-events: all;
+    z-index: 1;
+    transform: translateY(0);
+}
+
+.page-section.hidden {
+    transform: translateY(20px);
+}
+
+/* Landing Page Styles */
+#landing-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Background is handled by body, but we can add a subtle overlay if needed */
+}
+
+.content-wrapper {
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    z-index: 2;
+}
+
+.main-title {
+    font-family: 'BBH Bogle', 'Pretendard', sans-serif;
+    font-weight: 700;
+    font-size: 4rem;
+    color: #000000;
+    /* Keep title white on purple background */
+    margin-bottom: 40px;
+    line-height: 1;
+    animation: titleFloat 3s ease-in-out infinite;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: 500;
+    letter-spacing: s3px;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 10px;
+}
+
+.title-image {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 30px;
+    animation: titleFloat 3s ease-in-out infinite;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+}
+
+.input-card {
+    /* background: var(--white-bottom); */
+    /* backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); */
+    /* border: 1px solid var(--glass-border); */
+    padding: 30px;
+    /* border-radius: 24px; */
+    /* box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); */
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    color: #000000;
+    font-size: 1 rem;
+    margin-bottom: 8px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.input-helper {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    line-height: 1.4;
+    font-weight: 300;
+}
+
+input,
+textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    /* border-radius: 12px; */
+    padding: 15px;
+    color: #333;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+textarea {
+    height: 100px;
+    resize: none;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--gold-accent);
+    background: #fff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.primary-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+    color: var(--purple-top);
+    border: none;
+    padding: 16px;
+    /* border-radius: 12px; */
+    font-size: 1.1rem;
+    font-weight: bold;
+    font-family: 'BBH Bogle', 'Pretendard', sans-serif;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); */
+}
+
+.primary-btn:active {
+    transform: scale(0.98);
+}
+
+/* Card Page Styles */
+#card-page {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+    /* Let clicks pass through to canvas */
+}
+
+.recipient {
+    font-size: 1.2rem;
+    color: #a4ffbc;
+    font-weight: bold;
+    margin-top: 10px;
+    letter-spacing: 1px;
+    font-family: 'BBH Bogle', 'Pretendard', sans-serif;
+}
+
+#canvas-container {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    /* Ensure canvas is transparent so body gradient shows if needed, 
+       but p5 will likely draw over it. */
+}
+
+.message-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Gradient from transparent to white to match the bottom background */
+    background: linear-gradient(to top, rgba(255, 255, 255, 1) 20%, rgba(255, 255, 255, 0.8) 60%, transparent);
+    padding: 60px 20px 40px;
+    text-align: center;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.message-content {
+    max-width: 500px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.greeting-image {
+    width: 200%;
+    max-width: 300px;
+    margin-bottom: 5px;
+    /* filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1)); */
+}
+
+.wish-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #444;
+    font-weight: 500;
+}
+
+.signature {
+    font-size: 0.9rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.icon-btn {
+    background: rgba(106, 17, 203, 0.1);
+    border: 1px solid rgba(106, 17, 203, 0.2);
+    color: var(--purple-top);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.icon-btn:hover {
+    background: rgba(106, 17, 203, 0.2);
+}
+
+@keyframes titleFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.footer-copyright {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+}

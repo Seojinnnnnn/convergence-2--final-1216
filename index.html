@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy New Year 2026</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+</head>
+
+<body>
+    <!-- Landing Page Section -->
+    <div id="landing-page" class="page-section active">
+        <div class="content-wrapper">
+            <img src="asset/113.svg" alt="2026 New Year's Card" class="title-image">
+            <div class="input-card">
+                <div class="input-group">
+                    <label>Your Name</label>
+                    <input type="text" id="nameInput" placeholder="당신의 이름을 작성해주세요." maxlength="20">
+                </div>
+                <div class="input-group">
+                    <label>2026 WISH</label>
+                    <textarea id="messageInput" placeholder="어떤 한 해를 보내고 싶으신가요? '-는' 으로 끝나는 문장을 작성해주세요."
+                        maxlength="20"></textarea>
+                </div>
+                <button id="createBtn" class="primary-btn">Launch Your Wish</button>
+            </div>
+        </div>
+        <p class="footer-copyright">2025 Convergence Design (2)</p>
+    </div>
+
+    <!-- Card Display Section -->
+    <div id="card-page" class="page-section hidden">
+        <div class="card-header">
+            <img src="asset/213.svg" alt="Happy New Year" class="greeting-image">
+            <p class="recipient">TO. <span id="displayName"></span></p>
+        </div>
+        <div id="canvas-container">
+            <!-- p5.js canvas goes here -->
+        </div>
+        <div class="message-overlay">
+            <div class="message-content">
+                <p id="displayWish" class="wish-text"></p>
+                <p class="signature">FROM. Seojin</p>
+            </div>
+            <div class="button-group">
+                <button id="backBtn" class="icon-btn" aria-label="Go Back">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                <button id="saveBtn" class="icon-btn" aria-label="Save Image">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="sketch.js"></script>
+</body>
+
+</html>
